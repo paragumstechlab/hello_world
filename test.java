@@ -1,30 +1,24 @@
-  Enumeration<String> parameterNames = req.getParameterNames();
+package com.test;
 
-  while (parameterNames.hasMoreElements())
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+public class datePoc
+{
+  public static void main(String[] args)
   {
-    String paramName = parameterNames.nextElement();
-    String[] paramValues = req.getParameterValues(paramName);
-    for (int i = 0; i < paramValues.length; i++)
-    {
-      String paramValue = paramValues[i];
-      log.warning("\n"+paramName+"\t" + paramValue);
-    }
+    Date today = new Date();
+    Calendar cal = new GregorianCalendar();
+    cal.setTime(today);
+    cal.add(Calendar.DAY_OF_MONTH, -30);
+    Date today30 = cal.getTime();
+    System.err.println(today30);
+    cal.add(Calendar.DAY_OF_MONTH, -60);
+    Date today60 = cal.getTime();
+    System.err.println(today60);
+    cal.add(Calendar.DAY_OF_MONTH, -90);
+    Date today90 = cal.getTime();
+    System.err.println(today90);
   }
-
-  String planner_created_date = null;
-  String planner_month_year = null;
-  String planner_date = null;
-  String planner_objective_for_selecting_market = null;
-  String planner_status = null;
-  String plnr_tbl_fk_created_by = null;
-  String plnr_tbl_fk_country_id = null;
-  String plnr_tbl_fk_state_id = null;
-  String plnr_tbl_fk_region_id = null;
-  String plnr_tbl_fk_head_quarter_id = null;
-  String plnr_tbl_fk_district_id = null;
-  String plnr_tbl_fk_city_id = null;
-  String plnr_tbl_fk_route_id = null;
-
-  JSONObject json_data_input = new JSONObject(json_data);
-  JSONArray planner_array = json_data_input.getJSONArray("planner_data");
-  JSONObject obj = null;
+}

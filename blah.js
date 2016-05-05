@@ -1,4 +1,3 @@
-<script type="text/javascript">
 //Add AdHoc created on 5th May 2016
 function AddAdHoc()
 {
@@ -93,4 +92,3 @@ function DeleteAdHoc()
   else
     Browser.msgBox("Please switch to AdHoc View to delete a task from AdHoc Master");
 }//DeleteAdHoc
-</script>

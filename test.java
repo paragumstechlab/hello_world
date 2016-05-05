@@ -1,107 +1,30 @@
-Enumeration<String> parameterNames = req.getParameterNames();
-	while (parameterNames.hasMoreElements())
-	{
-		String paramName = parameterNames.nextElement();
+  Enumeration<String> parameterNames = req.getParameterNames();
 
-		String[] paramValues = req.getParameterValues(paramName);
-		for (int i = 0; i < paramValues.length; i++)
-		{
-			String paramValue = paramValues[i];
-			log.warning("\n"+paramName+"\t" + paramValue);
-		}
-	}
-
-//Add AdHoc
-function AddAdHoc()
-{
-  var html = HtmlService.createHtmlOutputFromFile('add_adhoc')
-  .setSandboxMode(HtmlService.SandboxMode.IFRAME);
-
-  SpreadsheetApp.getUi() // Or DocumentApp or FormApp.
-  .showModalDialog(html, 'AdHoc Master Master');
-}//AddAdHoc
-
-//View AdHoc Master
-function ViewAdHoc()
-{
-  var option=
-      {
-        "method":"post",
-        //"headers":headers,
-        "muteHttpExceptions": true
-      };
-  var response=UrlFetchApp.fetch('https://script.google.com/macros/s/AKfycbyWyaNxwT3qUowO_P25oArij_38F40x0aLy1PnJmozbsTdBfb3Z/exec',option);
-  Logger.log(response);
-}//ViewAdHoc
-
-//Edit Ad Hoc
-function UpdateAdHoc()
-{
-  var column_name = SpreadsheetApp.getActiveSheet().getRange('A1').getValue();
-  if(column_name == 'Task Id')
+  while (parameterNames.hasMoreElements())
   {
-    var row = SpreadsheetApp.getActiveSheet().getActiveCell().getRowIndex();
-
-    Logger.log("ed"+row);
-
-    var lastRow = SpreadsheetApp.getActiveSheet().getLastRow();
-
-    if(row > 1 && row <= lastRow)
+    String paramName = parameterNames.nextElement();
+    String[] paramValues = req.getParameterValues(paramName);
+    for (int i = 0; i < paramValues.length; i++)
     {
-      var html = HtmlService.createHtmlOutputFromFile('Update_adhoc').setSandboxMode(HtmlService.SandboxMode.IFRAME);
-      SpreadsheetApp.getUi() // Or DocumentApp or FormApp.
-      .showModalDialog(html, 'AdHoc Master');
-    }//if
-    else
-      Browser.msgBox("Please select a row other than column header or an empty row");
-  }//if
-  else
-  {
-    Browser.msgBox("Please switch to AdHoc View to edit a task from AdHoc Master");
-  }//else
-}//EditAdHoc
+      String paramValue = paramValues[i];
+      log.warning("\n"+paramName+"\t" + paramValue);
+    }
+  }
 
-//Delete AdHoc
-function DeleteAdHoc()
-{
-  var column_name = SpreadsheetApp.getActiveSheet().getRange('A1').getValue();
-  if(column_name == 'Task Id')
-  {
-    var row = SpreadsheetApp.getActiveSpreadsheet().getActiveCell().getRowIndex();
-    Logger.log(row);
-    var lastRow = SpreadsheetApp.getActiveSheet().getLastRow();
+  String planner_created_date = null;
+  String planner_month_year = null;
+  String planner_date = null;
+  String planner_objective_for_selecting_market = null;
+  String planner_status = null;
+  String plnr_tbl_fk_created_by = null;
+  String plnr_tbl_fk_country_id = null;
+  String plnr_tbl_fk_state_id = null;
+  String plnr_tbl_fk_region_id = null;
+  String plnr_tbl_fk_head_quarter_id = null;
+  String plnr_tbl_fk_district_id = null;
+  String plnr_tbl_fk_city_id = null;
+  String plnr_tbl_fk_route_id = null;
 
-    if(row > 1 && row <= lastRow)
-    {
-      Logger.log("in if");
-      var task_id = SpreadsheetApp.getActiveSpreadsheet().getRange("A"+row).getValue().toString();
-      var username = "yogi_app";
-      var password = "e10adc3949ba59abbe56e057f20f883e";
-      var headers = {"Authorization":"Basic "+Utilities.base64Encode(username+":"+password)};
-      var payload = {
-        "task_id" : task_id
-      };
-
-      var option = {
-        "method":"post",
-        "headers":headers,
-        "payload":payload,
-        "muteHttpExceptions": true
-      };
-
-      var response=UrlFetchApp.fetch("https://sardayogiapp.appspot.com/DeleteAdHocTasks",option);
-
-      Logger.log(response);
-
-      if(response==1)
-        ViewAdHoc();
-      else
-        Browser.msgBox("Promoter Deletion Failed! Please try again");
-    }//if
-    else
-      Browser.msgBox("Please select a valid row other than column header or an empty row");
-    //Browser.msgBox("Please select a valid row");
-  }//if
-  else
-    Browser.msgBox("Please switch to AdHoc View to delete a task from AdHoc Master");
-}//DeleteAdHoc
+  JSONObject json_data_input = new JSONObject(json_data);
+  JSONArray planner_array = json_data_input.getJSONArray("planner_data");
+  JSONObject obj = null;

@@ -10,6 +10,10 @@ public class HashMapTest
 	public static void main(String[] args)
 	{
 		//String str_one = "Fri Apr 01 2016 00:00:00 GMT+0530 (IST)";
+<<<<<<< HEAD
+=======
+		String dateStr_one = "Mon Jun 30 00:12:00 IST 2016";
+>>>>>>> feature1
 		String dateStr = "Mon Jun 18 00:00:00 IST 2012";
 		//DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
 		DateFormat formatter = new SimpleDateFormat("E M dd HH:mm:ss Z yyyy");

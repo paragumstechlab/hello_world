@@ -9,6 +9,18 @@ public class HashMapTest
 {
 	public static void main(String[] args)
 	{
+		//String str_one = "Fri Apr 01 2016 00:00:00 GMT+0530 (IST)";
+		String dateStr = "Mon Jun 18 00:00:00 IST 2012";
+		//DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
+		DateFormat formatter = new SimpleDateFormat("E M dd HH:mm:ss Z yyyy");
+		Date date = (Date)formatter.parse(dateStr);
+		System.out.println("First: "+date);
+
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		String formatedDate = cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" +         cal.get(Calendar.YEAR);
+		System.out.println("Formatted Date : " + formatedDate);
+
 		/*Map<Integer,Map<String,String>> user_map1 = new HashMap<Integer,Map<String,String>>();
 		Map<String,String> user_set1 = new HashMap<String,String>();
 

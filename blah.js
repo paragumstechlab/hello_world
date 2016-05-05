@@ -1,5 +1,9 @@
 <script type="text/javascript">
 //Add AdHoc
+//Add AdHoc
+//Add AdHoc
+//Add AdHoc
+//Add AdHoc created o 5th May 2016
 function AddAdHoc()
 {
   var html = HtmlService.createHtmlOutputFromFile('add_adhoc')

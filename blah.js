@@ -1,3 +1,4 @@
+<script type="text/javascript">
 //Add AdHoc
 function AddAdHoc()
 {
@@ -92,7 +93,4 @@ function DeleteAdHoc()
   else
     Browser.msgBox("Please switch to AdHoc View to delete a task from AdHoc Master");
 }//DeleteAdHoc
-
-<script type="text/javascript">
-	alert("Test");
 </script>
